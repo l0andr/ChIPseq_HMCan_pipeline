@@ -34,8 +34,12 @@ Contents:
     ./install.sh - some additional steps for installation
 
 1.3 Structure of repository:
-    pipelines/ - directory with snakemake pipelines
-    tools/ - directory with separate tools
+    
+    /biopipemisc - some common misc functions
+    /01_raw_data_qc_pipeline - pipeline for raw(fastq) data qc
+    /02_mapping_pipeline - pipleine for read mapping  
+    /03_mapping_qc_pipeline - pipeline for QC of maped reads and also compute coverage and ChIPseq samples fingirprint  
+    /04_hmcan_lily_pipeline - pipeline for HMCan peak calling and LILY peak annotation (Super Enhancers detection) 
 
 1.4 Structure of each pipeline:
     Snakefile - main file with pipeline, which contains rules and their order of execution,it written mostly on python

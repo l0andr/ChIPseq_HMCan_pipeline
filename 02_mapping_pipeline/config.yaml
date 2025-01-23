@@ -1,0 +1,27 @@
+input_dir: "/local/projects-t4/gaykalova/ChIPSeq/raw_org/"
+
+first_reads_file_mask: "_R1.fastq.gz"
+second_reads_file_mask: "_R2.fastq.gz"
+skip_unpaired: False
+verbose: 2
+
+ref_genome: "/local/projects-t3/gaykalova/vmukhina/hic/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set_hpv16.clean.fna"
+mapped_bam_output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_notmixed"
+number_of_threads_mapper: 10
+number_of_threads_samtools: 10
+
+#trimming:
+use_trimmomatic: True
+trimmomatic_params: "ILLUMINACLIP:/home/aloginov/adapters/TruSeq3-PE.fa:2:30:10:2:true LEADING:3 TRAILING:3  
+SLIDINGWINDOW:8:12 MINLEN:60"
+trimmomatic_threads: 10
+trimmomatic_outdir:  "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/trimmed_input"
+trimmomatic_memory: 40960
+
+tmp_dir: "/local/scratch/aloginov/mapped_tmp_dir"
+
+#unused parameters:
+reports_output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/qc_reports_input"
+reverse_dir_depth_for_output_prefix: 2
+remove_duplicates: False
+

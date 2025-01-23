@@ -1,0 +1,1 @@
+snakemake --use-conda --conda-frontend mamba --jobscript umd_cluster_run.sh --cluster "qsub -M aloginov@som.umaryland.edu -P dgaykalova-lab -l mem_free=35G -m esa -pe thread {resources.threads} -q threaded.q -cwd -S /bin/bash " -j 12 --rerun-incomplete

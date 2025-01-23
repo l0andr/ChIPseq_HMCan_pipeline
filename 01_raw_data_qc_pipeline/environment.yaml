@@ -1,0 +1,10 @@
+name: fastqc_env
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - fastqc
+  - multiqc
+  - pip
+  - pip:
+      - parse

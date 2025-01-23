@@ -1,0 +1,189 @@
+import version
+import glob
+from os.path import join
+import os
+
+configfile: "config.yaml"
+
+# Select files based on file mask and use_subdirs flag
+if config['use_subdirs']:
+    pattern = join(config["input_dir"],"**", config["file_mask"])
+else:
+    pattern = join(config["input_dir"], config["file_mask"])
+input_files = glob.glob(pattern,recursive=config["use_subdirs"])
+
+print(f"Input directory:{config['input_dir']}")
+print(f"Files for {version.__pipeline_name__} processing({pattern}):")
+if len(input_files) == 0:
+    print(f"\t*** Nothing to process! ***")
+for fname in input_files:
+    print(f"\t{fname}")
+
+list_of_dir_to_unsure_and_create = [config["output_dir"],config["tmp_dir"]]
+
+for d in list_of_dir_to_unsure_and_create:
+    if not os.path.isdir(d):
+        print(f"No output dir:{d}. Will try to create.")
+        os.makedirs(d,exist_ok=True)
+
+def filepath2name(fpath):
+    return os.path.basename(fpath).split('.')[0]
+
+file_mapping = {filepath2name(fp): fp for fp in input_files}
+
+qualimap_multi_bam_reports_dir = config['qualimap_multi_bam_reports_dir']
+if len(qualimap_multi_bam_reports_dir) == 0:
+    qualimap_multi_bam_reports_dir = os.path.join(config["output_dir"],'multibamreport')
+
+if not config['run_qualimap_multi_bam']:
+    qualimap_multi_bam_reports_dir = ''
+
+bam_coverage_reports_out_dir = config['bamCoverage_dir']
+if len(bam_coverage_reports_out_dir) == 0:
+    bam_coverage_reports_out_dir = os.path.join(config["output_dir"],'bam_coverage')
+
+file_for_bam_covergae = input_files
+if not config['run_bamCoverage']:
+    bam_coverage_reports_out_dir = ''
+    file_for_bam_covergae = []
+
+def generate_labels_file(qualimap_out_dir):
+    tsv = os.path.join(qualimap_out_dir,'qualimap_files_list.txt')
+    with open(tsv,'w') as fid:
+        for file_name in file_mapping.keys():
+            label = file_name
+            rep_path = os.path.join(config["output_dir"],file_name)
+            if 'list_of_samples' in config and len(config['list_of_samples']) > 0:
+                group = 'undef'
+                for smp in config['list_of_samples']:
+                    if label.startswith(smp):
+                        group = smp
+                        break
+            fid.write(f"{label}\t{rep_path}\t{group}\n")
+    return tsv
+
+qualimap_multi_bam_labels_file = config['qualimap_multi_bam_labels_file']
+if len(qualimap_multi_bam_labels_file) == 0:
+    qualimap_multi_bam_labels_file = generate_labels_file(config["output_dir"])
+
+if not os.path.exists(qualimap_multi_bam_labels_file) and config['run_qualimap_multi_bam']:
+    raise RuntimeError(f"Can't find file with labels ({qualimap_multi_bam_labels_file})")
+
+fingerprint_report_out_dir = config['plotFingerprint_dir']
+if len(fingerprint_report_out_dir) == 0:
+    fingerprint_report_out_dir = os.path.join(config["output_dir"],'fingerprint')
+
+list_of_fp_sample = config['list_of_samples']
+
+if not(config["run_plotFingerprint"]):
+    fingerprint_report_out_dir = ""
+    list_of_fp_sample = ""
+
+def fp_sample2bamfiles(fp_smp):
+    out_list = []
+    for k,v in file_mapping.items():
+        if k.startswith(fp_smp):
+            out_list.append(v)
+    return out_list
+
+print(file_for_bam_covergae)
+print(bam_coverage_reports_out_dir)
+rule all:
+    input:
+        expand("{outdir}/{sample}/qualimapReport.html", outdir=config["output_dir"], sample=list(map(lambda
+            x:filepath2name(x), input_files))),
+        expand("{multibam_report_dir}/multisampleBamQcReport.html",multibam_report_dir=qualimap_multi_bam_reports_dir),
+        expand("{fingerprint_report_dir}/{fp_sample}.png", fingerprint_report_dir=fingerprint_report_out_dir,
+            fp_sample=list_of_fp_sample),
+        expand("{bam_coverage_report_dir}/{bc_sample}.bw", bam_coverage_report_dir=bam_coverage_reports_out_dir,
+        bc_sample=list(map(lambda
+            x:filepath2name(x), file_for_bam_covergae)))
+
+# Define rule for running QualimapQC
+rule qualimap_each_bam:
+    input:
+        bam=lambda wildcards: file_mapping[wildcards.sample],
+    output:
+        html = "{outdir}/{sample}/qualimapReport.html"
+    params:
+        qulimap_threads = config['qulimap_threads'],
+        outdir = config['output_dir'],
+        mem_size_in_gb = config['mem_size_in_gb']
+    threads: config['qulimap_threads']
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=config['mem_size_in_gb']*1024,
+        runtime=60,
+        threads=config['qulimap_threads'],
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir}; qualimap bamqc -bam {input.bam} -outdir {params.outdir}/{wildcards.sample} "
+        "--java-mem-size={params.mem_size_in_gb}G -nt {params.qulimap_threads}"
+
+rule qualimap_multi_bam:
+    input:
+        bam=expand("{outdir}/{sample}/qualimapReport.html", outdir=config["output_dir"], sample=list(map( lambda
+            x:filepath2name(x),input_files))),
+        sample_file = qualimap_multi_bam_labels_file
+    output:
+        html =    expand("{multibam_report_dir}/multisampleBamQcReport.html",multibam_report_dir=qualimap_multi_bam_reports_dir)
+    params:
+        outdir = config['output_dir'],
+        mem_size_in_gb = config['mem_size_in_gb']
+    threads: 1
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=config['mem_size_in_gb']*1024,
+        runtime=60,
+        threads=1,
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir}; qualimap multi-bamqc -d {input.sample_file} -outdir {qualimap_multi_bam_reports_dir} "
+        "--java-mem-size={params.mem_size_in_gb}G "
+
+rule plotFingerprint:
+    input:
+        bams = lambda wildcards: fp_sample2bamfiles(wildcards.fp_sample)
+    output:
+        png =  "{fingerprint_report_dir}/{fp_sample}.png",
+        counts = "{fingerprint_report_dir}/{fp_sample}.dat"
+    params:
+        threads = config['qulimap_threads'],
+        fp_params = config["fingerPrintParams"],
+        outdir = config['output_dir'],
+        mem_size_in_gb = config['mem_size_in_gb']
+    threads: config['qulimap_threads']
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=config['mem_size_in_gb']*1024,
+        runtime=60,
+        threads=config['qulimap_threads'],
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir}; plotFingerprint  -b {input.bams} -o {output.png} --outRawCounts {output.counts} "
+        " {params.fp_params} -p {params.threads}"
+
+rule bamCoverage:
+    input:
+        bam=lambda wildcards: file_mapping[wildcards.bc_sample],
+    output:
+        bigwig_file = "{bam_coverga_report_dir}/{bc_sample}.bw"
+    params:
+        threads=config['qulimap_threads'],
+        bc_params=config["bamCoverageParams"],
+        outdir=config['output_dir'],
+        mem_size_in_gb=config['mem_size_in_gb']
+    threads: config['qulimap_threads']
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=config['mem_size_in_gb'] * 1024,
+        runtime=60,
+        threads=config['qulimap_threads'],
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir};bamCoverage -b {input.bam} -o {output.bigwig_file} -of 'bigwig' "
+        "{params.bc_params} -p {params.threads}"

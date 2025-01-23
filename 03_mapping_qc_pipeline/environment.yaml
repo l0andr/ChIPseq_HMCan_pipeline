@@ -1,0 +1,12 @@
+name: mapping_qc
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - qualimap
+  - deeptools=3.5.1
+  - pygenometracks
+  - pip
+  - pip:
+     - pysam==0.20.0
+

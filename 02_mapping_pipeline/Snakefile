@@ -1,0 +1,295 @@
+'''
+Autor: Andrey Loginov (andreyloginovmob@gmail.com)
+Made in Gaykalova lab (https://www.igs.umaryland.edu/labs/gaykalova/)
+
+Pipeline for mapping ChIP-seq data.
+
+Pileline steps:
+0. Creating a list of samples in subditrectory
+[optional] 1. Filtering fastq files
+2. Merge multiple fastq files into one
+3. Mapping with bwa mem
+
+'''
+
+import logging
+import glob
+from os.path import join
+import os
+import shutil
+from typing import List, Dict,Union,Optional
+
+import pandas as pd
+
+
+class Samples:
+    '''
+    Class for working with samples in a directory or in cvs file.
+    We assume that each sample are in a separate sub-directory or specified in separate line in cvs file.
+    Directory name is unique id of the sample or we expect that csv file has a column with unique ids.
+    '''
+    def __init__(self, path:Optional[str]=None,
+                 file_mask:str='*.fastq.gz',
+                 attribute_pattern_dict:Optional[Dict[str,str]]=None,
+                 cvs_file:Optional[str]=None,
+                 verbose:bool=False,
+                 log:Optional[logging.Logger]=None):
+        if path is None and cvs_file is None:
+            raise ValueError("Either path or cvs_file should be specified")
+        self.path = None
+        self.file_mask = file_mask
+        if path is not None:
+            self.path = path
+        self.attribute_pattern_dict = attribute_pattern_dict
+        self.verbose = verbose
+        self.log = log
+        self.get_samples()
+        self.metadata_table = self.__generate_file_list(self.samples,self.file_mask)
+
+    def get_samples(self)->None:
+        self.samples = []
+        samples_list = [ f.path for f in os.scandir(self.path) if f.is_dir() ]
+        for sample in samples_list:
+            #check if sample has files coresponding file mask
+            if len(glob.glob(join(sample,self.file_mask))) == 0:
+                warning_msg = f"No files with mask {self.file_mask} in {sample} sample skipped"
+                if self.log is not None:
+                    self.log.warning(warning_msg)
+                else:
+                    if verbose > 0:
+                        warning(warning_msg)
+            else:
+                self.samples.append(sample)
+
+    @staticmethod
+    def __generate_file_list(samples:List[str],file_mask:str)->pd.DataFrame:
+        file_list = {'sample':[],'file':[],'sample_dir':[]}
+        for sample in samples:
+            files = sorted(glob.glob(join(sample,file_mask)))
+            for f in files:
+                file_list['sample_dir'].append(sample)
+                file_list['sample'].append(sample.split('/')[-1])
+                file_list['file'].append(f)
+        return pd.DataFrame(file_list)
+
+    def add_bool_attribute(self,attribute_name:str,feature:str,attribute_source='sample',case_sensitive=True)->None:
+        if self.metadata_table is None:
+            if self.log is not None:
+                self.log.error("metadata_table is not initialized")
+                raise ValueError("metadata_table is not initialized")
+            else:
+                raise ValueError("metadata_table is not initialized")
+        if attribute_source not in ['sample','file']:
+            if self.log is not None:
+                self.log.error(f"attribute_source should be 'sample' or 'file' but {attribute_source} was provided")
+                raise ValueError(f"attribute_source should be 'sample' or 'file' but {attribute_source} was provided")
+            else:
+                raise ValueError(f"attribute_source should be 'sample' or 'file' but {attribute_source} was provided")
+        for index,row in self.metadata_table.iterrows():
+            if case_sensitive:
+                self.metadata_table.loc[index,attribute_name] = feature in row[attribute_source]
+            else:
+                self.metadata_table.loc[index,attribute_name] = feature.lower() in row[attribute_source].lower()
+
+    def get_info(self)->pd.DataFrame:
+        return self.metadata_table
+    def __str__(self):
+        out_str = f"Number of samples is {len(self.samples)}\n"
+        if self.verbose > 0:
+            out_str += f"Samples in {self.path}: {self.samples}"
+        return out_str
+
+configfile: "config.yaml"
+verbose = config["verbose"]
+log = logging.getLogger("chipseq_mapping")
+ch = logging.StreamHandler()
+if verbose > 2:
+    log.setLevel(logging.DEBUG)
+elif verbose > 1:
+    log.setLevel(logging.INFO)
+elif verbose > 0:
+    log.setLevel(logging.WARNING)
+else:
+    log.setLevel(logging.ERROR)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
+log.info("Pipeline started")
+log.info(f"Verbose level is {verbose}")
+log.info(f"Input directory is {config['input_dir']}")
+smp = Samples(path=config["input_dir"],verbose=verbose,log=log)
+smp.add_bool_attribute('is_control','Input',case_sensitive=False)
+smp.add_bool_attribute('left','_R1.',attribute_source='file')
+smp.add_bool_attribute('right','_R2.',attribute_source='file')
+samples_table = smp.get_info()
+#for each sample calculate number of left and right files
+samples_table['left_count'] = samples_table['left'].groupby(samples_table['sample']).transform('sum')
+samples_table['right_count'] = samples_table['right'].groupby(samples_table['sample']).transform('sum')
+samples_table['is_paired'] = samples_table['left_count'] == samples_table['right_count']
+samples_table['is_paired'] = samples_table['is_paired'].astype(bool)
+#obtain list of samples with un paired files
+unpaired_samples = samples_table[samples_table['is_paired'] == False]['sample'].unique()
+for us in unpaired_samples:
+    number_of_left_files = samples_table[(samples_table['sample'] == us) & (samples_table['left'] == True)]['left'].count()
+    number_of_right_files = samples_table[(samples_table['sample'] == us) & (samples_table['right'] == True)]['right'].count()
+    log.info(f"Sample {us} has unpaired files. Left files[{number_of_left_files}]. Right files[{number_of_right_files}].")
+    log.debug(f"Sample {us}. Left files list: {samples_table[(samples_table['sample'] == us) & (samples_table['left'] == True)]['file'].values}. Right files list: {samples_table[(samples_table['sample'] == us) & (samples_table['right'] == True)]['file'].values}")
+if len(unpaired_samples) > 0:
+    log.info(f"{len(unpaired_samples)} from {len(samples_table.index)} are unpaired")
+    samples_table = samples_table[samples_table['is_paired'] == True]
+else:
+    log.info("All samples are paired ")
+paired_samples= samples_table[samples_table['is_paired'] == True]['sample'].unique().tolist()
+formerge_samples = samples_table[(samples_table['sample'].isin(paired_samples)) & (samples_table['left_count'] > 1)]['sample'].unique().tolist()
+log.info(f"Samples with more than one set of files (need to be merge)[{len(formerge_samples)}]: {formerge_samples}")
+#create id for files pairs - some unique id for each pair of files for each sample
+#number all left reads for each sample
+samples_table.sort_values(by=['sample','left','file'],inplace=True)
+#numbering files in each sample starting from 1
+samples_table['pair_number'] = samples_table.groupby(['sample','left']).cumcount()+1
+#create id with sample and pair
+samples_table['sample_pair'] = samples_table['sample'] + "_" + samples_table['pair_number'].astype(str)
+#pd.options.display.max_colwidth = 100
+#print(f"{samples_table[['sample','left','file','pair_number','sample_pair']]}")
+#exit(0)
+# add to each string in list formerge_samples postfix _merged
+merged_samples = [f"{s}_merged" for s in formerge_samples]
+
+samples_table['need_merge'] = samples_table['sample'].isin(formerge_samples)
+
+if config['use_trimmomatic']:
+    samples_table['input_for_trimmomatic'] = samples_table['file']
+    paired_samples_to_trimomatic = samples_table[samples_table['is_paired'] == True]['sample_pair'].unique().tolist()
+    samples_table['left_right_symbol'] = samples_table['left'].apply(lambda x: 'R1' if x else 'R2')
+    samples_table['output_from_trimmomatic'] = config['trimmomatic_outdir'] + "/" + samples_table['sample_pair'] + "_trim_paired_"+samples_table['left_right_symbol']+".fastq.gz"
+    samples_table['input_for_merge'] = samples_table['output_from_trimmomatic']
+else:
+    samples_table['input_for_trimmomatic'] = None
+    paired_samples_to_trimomatic = []
+    samples_table['output_from_trimmomatic'] = []
+    samples_table['input_for_merge'] = samples_table['file']
+
+samples_table['output_from_merge'] = config['tmp_dir'] + "/merge/" + samples_table['sample'] + "/" + samples_table['sample'] + "_"+samples_table['left_right_symbol']+".fastq.gz"
+# input for mapping is output from trimmomatic or output from merge in case if need_merge is True
+samples_table['input_for_mapping'] = samples_table['output_from_trimmomatic']
+samples_table.loc[samples_table['need_merge'] == True,'input_for_mapping'] = samples_table['output_from_merge']
+
+for_map_pair_samples = paired_samples
+
+
+list_of_dir_to_unsure_and_create = [config["mapped_bam_output_dir"],
+                                    config["reports_output_dir"],
+                                    config["tmp_dir"],
+                                    f"{config['tmp_dir']}/merge",
+                                    f"{config['tmp_dir']}/mapped",
+                                    config["trimmomatic_outdir"]]
+for d in list_of_dir_to_unsure_and_create:
+    if not os.path.exists(d):
+        os.makedirs(d)
+        log.info(f"Directory {d} was created")
+    else:
+        log.info(f"Directory {d} already exists")
+all_threads = config['number_of_threads_mapper'] + config['number_of_threads_samtools']
+log.info(f"Number of threads for mapping is {config['number_of_threads_mapper']}. Number of threads for samtools is {config['number_of_threads_samtools']}. Total number of threads is {all_threads}")
+
+samples_table.to_csv(config['reports_output_dir'] + "/chipseq_mapping_samples_table.csv",index=False)
+
+rule all:
+    input:
+        expand("{trimmed_outdir}/{sample_pair}_trim_paired_R1.fastq.gz",trimmed_outdir=config["trimmomatic_outdir"], \
+            sample_pair=paired_samples_to_trimomatic),
+        expand("{tmpdir}/merge/{sample}/{sample}_R1.fastq.gz",tmpdir=config["tmp_dir"],sample=formerge_samples), \
+        expand("{tmpdir}/merge/{sample}/{sample}_R2.fastq.gz",tmpdir=config["tmp_dir"],sample=formerge_samples), \
+        expand("{mapped_dir}/{sample}.bam",mapped_dir=config["mapped_bam_output_dir"],sample=for_map_pair_samples), \
+        expand("{mapped_dir}/{sample}.bam.bai",mapped_dir=config["mapped_bam_output_dir"],sample=for_map_pair_samples)
+        #expand("{outdir}/{sample}.bam",outdir=config["mapped_bam_output_dir"],sample=unpaired_samples), \
+        #expand("{outdir}/{sample}.bam.bai",outdir=config["mapped_bam_output_dir"],sample=unpaired_samples),
+#TODO add rules for trimming
+
+
+rule merge:
+    input:
+        left = lambda wildcards: sorted(samples_table[(samples_table['sample'] == wildcards.sample) & (samples_table['left'] == True)]['input_for_merge'].values),
+        right = lambda wildcards: sorted(samples_table[(samples_table['sample'] == wildcards.sample) & (samples_table['right'] == True)]['input_for_merge'].values)
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=10960,
+        runtime=60,
+        threads=1,
+    output:
+        sample_dir = directory("{tmpdir}/merge/{sample}/"),
+        left = "{tmpdir}/merge/{sample}/{sample}_R1.fastq.gz",
+        right = "{tmpdir}/merge/{sample}/{sample}_R2.fastq.gz"
+    shell:
+        "echo 'Will merge {input.left} to {output.left}'; "
+        "echo 'Will merge {input.right} to {output.right}'; "
+        "mkdir -p {output.sample_dir}; "
+        "cat {input.left} > {output.left}; cat {input.right} > {output.right};ls {output.sample_dir} > {output.sample_dir}/files.stat; "
+        
+rule mapping_bwa_paired:
+        input:
+            left = lambda wildcards: sorted(samples_table[(samples_table['sample'] == wildcards.sample) & (samples_table['left'] == True)]['input_for_mapping'].tolist())[0],
+            right = lambda wildcards: sorted(samples_table[(samples_table['sample'] == wildcards.sample) & (samples_table['right'] == True)]['input_for_mapping'].tolist())[0],
+            ref_genome=config['ref_genome']
+        output:
+            mapped_bam = "{mapped_dir}/{sample}.bam",
+        params:
+            mapper_threads = config['number_of_threads_mapper'],
+            samtools_threads = config['number_of_threads_samtools']
+        conda:
+            "environment.yaml"
+        resources:
+            mem_mb=40960,
+            runtime=360,
+            threads=all_threads,
+            tmpdir=config['tmp_dir']
+        shell:
+            "cd {resources.tmpdir};"
+            "bwa-mem2 mem -t {params.mapper_threads} {input.ref_genome} {input.left} {input.right} | samtools sort -@ {params.samtools_threads} - > {output.mapped_bam}"
+            #TODO conditionaly remove merged files
+
+rule trimming_trimomatic_paired:
+        input:
+            left=lambda wildcards: sorted(samples_table[(samples_table['sample_pair'] == wildcards.sample_pair) & (samples_table['left'] == True)]['input_for_trimmomatic'].values),
+            right=lambda wildcards: sorted(samples_table[(samples_table['sample_pair'] == wildcards.sample_pair) & (samples_table['right'] == True)]['input_for_trimmomatic'].values)
+        output:
+            trimed1 = "{trimmed_outdir}/{sample_pair}_trim_paired_R1.fastq.gz",
+            trimed2 = "{trimmed_outdir}/{sample_pair}_trim_paired_R2.fastq.gz",
+            trimed1_out= "{trimmed_outdir}/{sample_pair}_trim_unpaired_R1.fastq.gz",
+            trimed2_out="{trimmed_outdir}/{sample_pair}_trim_unpaired_R2.fastq.gz",
+        log:
+            trim_log="{trimmed_outdir}/{sample_pair}_trim.log",
+            trim_stat="{trimmed_outdir}/{sample_pair}_.stat"
+        conda:
+            "environment.yaml"
+        params:
+            trimmomatic_threads=config['trimmomatic_threads'],
+            trimmomatic_params=config['trimmomatic_params']
+        resources:
+            mem_mb=config['trimmomatic_memory'],
+            runtime=360,
+            threads=config['trimmomatic_threads'],
+        shell:
+            "trimmomatic PE -threads {params.trimmomatic_threads} "
+            "{input.left} {input.right} "
+            "{output.trimed1} {output.trimed1_out} {output.trimed2} {output.trimed2_out} "
+            "{params.trimmomatic_params}"
+
+rule bma_index:
+    input:
+        mapped_bam = "{mapped_dir}/{sample}.bam"
+    output:
+        index_file = "{mapped_dir}/{sample}.bam.bai"
+    params:
+        samtools_threads = config['number_of_threads_samtools']
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=4096,
+        runtime=60,
+        threads=config['number_of_threads_samtools'],
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir};samtools index -@ {params.samtools_threads} {input.mapped_bam}"

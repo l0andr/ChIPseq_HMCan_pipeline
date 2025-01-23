@@ -1,0 +1,6 @@
+numpy
+taxoniq
+jsoncomment
+tqdm
+parse
+pybedtools

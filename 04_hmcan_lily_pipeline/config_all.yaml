@@ -1,0 +1,27 @@
+input_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped"
+file_mask: "*.bam"
+use_subdirs: False
+output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/hmcan"
+tmp_dir: "/local/scratch/aloginov/hmcan"
+
+#following samples labels expected on the start of bam files names
+#list_of_samples: ['HOK16B','OKF6','SCC_147','UM_SCC_047','UPCI_SCC_090']
+list_of_samples: ['30011N','30011T','30012N','30012T','30694N','30694T','30709N','30709T','30861N','30861T','30862N',30862T',
+'30866N','30866T','30955N','30955T','30980N','30980T']
+#input lists should correspond to sample list.
+#list_of_inputs: ['HOK16BInput.bam','OKF6_Input.bam','SCC_147_Input.bam','UM_SCC_047_Input.bam','UPCI_SCC_090_Input.bam']
+list_of_inputs: ['30011NInput.bam','30011TInput.bam','30012NInput.bam','30012TInput.bam',
+'30694N_Input.bam','30694T_Input.bam','30709N_Input.bam','30709T_Input.bam','30861NInput.bam','30861TInput.bam',
+'30862NInput.bam','30862TInput.bam','30866N_Input.bam','30866T_Input.bam','30955NInput.bam','30955TInput.bam', 
+'30980NInput.bam','30980TInput.bam']
+
+hmcan_parma_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/hmcanconfig.txt"
+hmcan_installation_dir: "/local/projects-t3/gaykalova/ChIP-seq_Roy/src/HMCan"
+lily_installation_dir: "/local/projects-t3/gaykalova/ChIP-seq_Roy/src/LILYfix"
+lily_stitching_distance: 12500
+lily_annotate_promoters__distance: 2500
+lily_transcriptome_information_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/hg38_refseq.ucsc"
+lily_genome_index_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/GCA_000001405.15_GRCh38_no_alt_analysis_set_hpv16.clean.fna.fai"
+
+
+

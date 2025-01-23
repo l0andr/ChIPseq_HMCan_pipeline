@@ -1,0 +1,15 @@
+name: goodnuff
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>3.11,<3.12
+  - mamba
+  - graphviz
+  - snakemake-minimal
+  - matplotlib
+  - pyqt
+  - pandas
+  - scikit-learn
+  - seaborn
+  - pip

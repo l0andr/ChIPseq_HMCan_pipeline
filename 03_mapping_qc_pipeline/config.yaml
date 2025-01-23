@@ -1,0 +1,29 @@
+input_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac"
+file_mask: "*.bam"
+use_subdirs: False
+output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac"
+tmp_dir: "/local/scratch/aloginov/mapping_qc"
+qulimap_threads: 15
+
+mem_size_in_gb: 25
+
+#following samples labels expected on the start of bam files names
+
+list_of_samples: ['30011N','30011T','30012N','30012T','30694N','30694T','30709N','30709T','30861N','30861T','30862N','30862T',
+'30866N','30866T','30955N','30955T','30980N','30980T','30710N','30710T','30721N','30721T','30729N','30729T','HOK16','OKF',
+'SCC_147','UM_SCC_047','UPCI_SCC_090']
+#list_of_samples: ['OKF','SCC_147','UM_SCC_047','UPCI_SCC_090']
+
+
+
+run_qualimap_multi_bam: True
+qualimap_multi_bam_labels_file: ""
+qualimap_multi_bam_reports_dir: ""
+
+run_plotFingerprint: True
+plotFingerprint_dir: ""
+fingerPrintParams: "--smartLabels --minMappingQuality 30 --skipZeros"
+
+run_bamCoverage: True
+bamCoverage_dir: ""
+bamCoverageParams: "--binSize 100 --normalizeUsing RPGC --effectiveGenomeSize 2913022398 --extendReads --ignoreDuplicates"

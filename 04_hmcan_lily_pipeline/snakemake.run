@@ -1,0 +1,21 @@
+nohup: ignoring input
+Using profile slurm for setting default command line arguments.
+Support for alternative conda frontends has been deprecated in favor of simpler support and code base. This should not cause issues since current conda releases rely on fast solving via libmamba. Ignoring the alternative conda frontend setting (mamba).
+WorkflowError:
+The following required arguments are missing for plugin cluster-generic: --cluster-generic-submit-cmd.
+### Pipeline:hmcan_lily version: 0.5
+## Input directory:/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled
+## Files for hmcan_lily processing(/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/*.bam):
+## Can't find input bam for file /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729_Input.bam, will be skipped
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710T_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710T_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729N_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710N_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721T_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721T_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710T_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710T_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729T_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729T_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710N_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30710N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721T_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721T_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729N_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721N_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721N_H3K36Me3.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30721N_Input.bam
+##	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729T_H3K27ac.bam /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled/30729T_Input.bam

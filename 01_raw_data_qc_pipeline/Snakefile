@@ -1,0 +1,142 @@
+import glob
+from os.path import join
+import os
+import sys
+import inspect
+import logging
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+from biopipemisc.samples import Samples
+
+configfile: "config.yaml"
+verbose = config["verbose"]
+log = logging.getLogger("chipseq_mapping")
+ch = logging.StreamHandler()
+if verbose > 2:
+    log.setLevel(logging.DEBUG)
+elif verbose > 1:
+    log.setLevel(logging.INFO)
+elif verbose > 0:
+    log.setLevel(logging.WARNING)
+else:
+    log.setLevel(logging.ERROR)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
+log.info("Pipeline started")
+log.info(f"Verbose level is {verbose}")
+log.info(f"Input directory is {config['input_dir']}")
+smp = Samples(path=config["input_dir"],file_mask=config["file_mask"],each_file_sample=not config['use_subdirs'],verbose=verbose,log=log)
+log.debug(f"Sample object: {smp}")
+smp.add_bool_attribute('left','_R1.',attribute_source='file')
+smp.add_bool_attribute('right','_R2.',attribute_source='file')
+samples_table = smp.get_info()
+samples_table.sort_values(by=['sample','left','file'],inplace=True)
+#filenumber inside the sample
+samples_table['file_number'] = samples_table.groupby(['sample','left']).cumcount()+1
+def remove_fastx_extensions(x):
+    #possible extensions that should be removed fasta , fastq , fastq.gz , fastq.zip only one of them should be present
+    extensions = ['.fastq','.fastq.gz','.fastq.zip','.fasta']
+    for ext in extensions:
+        if x.endswith(ext):
+            return x.replace(ext,'')
+    return x
+samples_table['file_name'] = samples_table.apply(lambda x: remove_fastx_extensions(os.path.basename(x['file'])),axis=1)
+#strand flag is L if left = True and R if right = True
+samples_table['strand'] = samples_table.apply(lambda x: 'L' if x['left'] else 'R',axis=1)
+#desired file name contains left flag, sample name and number of file in the sample
+samples_table.loc[:,'desired_file_name'] = samples_table.apply(lambda x: x['sample']+'_'+x['strand']+'_'+str(x['file_number']),axis=1)
+
+if len(config['multiqc_report_dir']) > 0:
+    multiqc_report_dir = config['multiqc_report_dir']
+else:
+    multiqc_report_dir = config['output_dir']
+
+if len(config['multiqc_file_name']) > 0:
+    multiqc_file_name = config['multiqc_file_name']
+else:
+    multiqc_file_name = "fastqc_multi_report.html"
+list_of_dir_to_unsure_and_create = [config['output_dir'],
+                                    config["output_dir"]+"/original_filenames",
+                                    config["output_dir"]+"/sample_named"]
+if not config['create_multiqc']:
+    multiqc_report_dir = []
+    multiqc_file_name = []
+else:
+    list_of_dir_to_unsure_and_create.append(multiqc_report_dir)
+for d in list_of_dir_to_unsure_and_create:
+    if not os.path.exists(d):
+        os.makedirs(d)
+        log.info(f"Directory {d} was created")
+    else:
+        log.info(f"Directory {d} already exists")
+samples_table.to_csv(config["output_dir"]+"/samples_table.csv",index=False)
+rule all:
+    input:
+        expand("{outdir}/original_filenames/{sample}_fastqc.html", outdir=config["output_dir"], sample=samples_table['file_name'].tolist()),
+        expand("{outdir}/original_filenames/{sample}_fastqc.zip", outdir=config["output_dir"], sample=samples_table['file_name'].tolist()),
+        expand("{outdir}/sample_named/{newsample}_fastqc.html", outdir =config["output_dir"], newsample=samples_table['desired_file_name'].tolist()),
+        expand("{outdir}/sample_named/{newsample}_fastqc.zip", outdir=config["output_dir"], newsample=samples_table['desired_file_name'].tolist()),
+        expand("{multiqc_report_output_dir}/{multiqc_output_file_name}.html",
+            multiqc_report_output_dir=multiqc_report_dir,multiqc_output_file_name=multiqc_file_name)
+
+
+
+rule fastqc:
+    input:
+        fastq=lambda wildcards: samples_table[(samples_table['file_name'] == wildcards.sample)].file.tolist()[0]
+    output:
+        html = "{outdir}/original_filenames/{sample}_fastqc.html",
+        zip = "{outdir}/original_filenames/{sample}_fastqc.zip"
+    params:
+        outdir=config["output_dir"],
+    threads: 1
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=8096,
+        runtime=60,
+        threads=1
+    shell:
+        "fastqc --outdir {params.outdir}/original_filenames {input.fastq};"
+rule rename:
+    input:
+        html = lambda wildcards: "{outdir}/original_filenames/"+samples_table[(samples_table['desired_file_name'] == wildcards.newsample)].file_name.tolist()[0]+"_fastqc.html",
+        zip = lambda wildcards: "{outdir}/original_filenames/"+samples_table[(samples_table['desired_file_name'] == wildcards.newsample)].file_name.tolist()[0]+"_fastqc.zip",
+    output:
+        html = "{outdir}/sample_named/{newsample}_fastqc.html",
+        zip = "{outdir}/sample_named/{newsample}_fastqc.zip"
+    params:
+        outdir=config["output_dir"],
+    threads: 1
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=8096,
+        runtime=60,
+        threads=1
+    shell:
+        "cp -v {input.zip} {output.zip}; cp -v {input.html} {output.html}; "
+
+
+rule multiqc:
+    input:
+        html =  expand("{outdir}/sample_named/{newsample}_fastqc.html", outdir =config["output_dir"], newsample=samples_table['desired_file_name'].tolist())
+    output:
+        multiqc_report = expand("{multiqc_report_output_dir}/{multiqc_output_file_name}.html",
+        multiqc_report_output_dir=multiqc_report_dir,multiqc_output_file_name=multiqc_file_name)
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=8096,
+        runtime=60,
+        threads=1
+    threads: 1
+    params:
+        reportdir=config["output_dir"],
+        multireport_outdir = multiqc_report_dir,
+        multireport_filename = multiqc_file_name
+    shell:
+        "multiqc {params.reportdir} -o {params.multireport_outdir} -n {output.multiqc_report} --fn_as_s_name"

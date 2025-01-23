@@ -1,0 +1,1693 @@
+nohup: ignoring input
+Support for alternative conda frontends has been deprecated in favor of simpler support and code base. This should not cause issues since current conda releases rely on fast solving via libmamba. Ignoring the alternative conda frontend setting (mamba).
+host: thanos.igs.umaryland.edu
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however important for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Creating conda environment environment.yaml...
+Downloading and installing remote packages.
+Environment for /autofs/projects-t3/gaykalova/aloginov/roy_project/goodnuff/pipelines/mapping_qc/environment.yaml created (location: .snakemake/conda/ab9d13c3c955b1e6b0fbf80859ca3086_)
+Using shell: /usr/bin/bash
+Provided remote nodes: 20
+Job stats:
+job                   count
+------------------  -------
+all                       1
+bamCoverage              34
+plotFingerprint          29
+qualimap_each_bam        34
+qualimap_multi_bam        1
+total                    99
+
+Select jobs to execute...
+Execute 20 jobs...
+
+[Mon Nov  4 19:13:41 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721N_H3K27ac/qualimapReport.html
+    jobid: 26
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30721N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 26 with external jobid 'Your job 9892591 ("snakejob.qualimap_each_bam.26.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UPCI_SCC_090_H3K27ac.bw
+    jobid: 81
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UPCI_SCC_090_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=UPCI_SCC_090_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 81 with external jobid 'Your job 9892592 ("snakejob.bamCoverage.81.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862NH3K27ac/qualimapReport.html
+    jobid: 11
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30862NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 11 with external jobid 'Your job 9892593 ("snakejob.qualimap_each_bam.11.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/SCC_147_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/SCC_147.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/SCC_147.dat
+    jobid: 62
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/SCC_147.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=SCC_147
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 62 with external jobid 'Your job 9892594 ("snakejob.plotFingerprint.62.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866N.dat
+    jobid: 48
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30866N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 48 with external jobid 'Your job 9892595 ("snakejob.plotFingerprint.48.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012TH3K27ac/qualimapReport.html
+    jobid: 21
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30012TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 21 with external jobid 'Your job 9892596 ("snakejob.qualimap_each_bam.21.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980NH3K27ac.bw
+    jobid: 77
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30980NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 77 with external jobid 'Your job 9892597 ("snakejob.bamCoverage.77.sh") has been submitted'.
+
+[Mon Nov  4 19:13:41 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866T.dat
+    jobid: 49
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30866T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30866T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 49 with external jobid 'Your job 9892598 ("snakejob.plotFingerprint.49.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866N_H3K27ac/qualimapReport.html
+    jobid: 22
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30866N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 22 with external jobid 'Your job 9892599 ("snakejob.qualimap_each_bam.22.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729TH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729TH3K27ac_R2.bw
+    jobid: 78
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729TH3K27ac_R2.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30729TH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 78 with external jobid 'Your job 9892600 ("snakejob.bamCoverage.78.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac_R2.bam, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955N.dat
+    jobid: 50
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30955N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 50 with external jobid 'Your job 9892601 ("snakejob.plotFingerprint.50.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721T_H3K27ac/qualimapReport.html
+    jobid: 23
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30721T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 23 with external jobid 'Your job 9892602 ("snakejob.qualimap_each_bam.23.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980NH3K27ac_R2.bw
+    jobid: 79
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980NH3K27ac_R2.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30980NH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 79 with external jobid 'Your job 9892603 ("snakejob.bamCoverage.79.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac_R2.bam, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955T.dat
+    jobid: 51
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30955T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30955T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 51 with external jobid 'Your job 9892604 ("snakejob.plotFingerprint.51.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac/qualimapReport.html
+    jobid: 24
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30955NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 24 with external jobid 'Your job 9892605 ("snakejob.qualimap_each_bam.24.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30011TH3K27ac.bw
+    jobid: 80
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30011TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30011TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 80 with external jobid 'Your job 9892606 ("snakejob.bamCoverage.80.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac.bam, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980N.dat
+    jobid: 52
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30980N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 52 with external jobid 'Your job 9892607 ("snakejob.plotFingerprint.52.sh") has been submitted'.
+
+[Mon Nov  4 19:13:42 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac_R2/qualimapReport.html
+    jobid: 25
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac_R2/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=UPCI_SCC_090_H3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 25 with external jobid 'Your job 9892608 ("snakejob.qualimap_each_bam.25.sh") has been submitted'.
+
+[Mon Nov  4 19:13:43 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011NH3K27ac/qualimapReport.html
+    jobid: 4
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30011NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 4 with external jobid 'Your job 9892609 ("snakejob.qualimap_each_bam.4.sh") has been submitted'.
+
+[Mon Nov  4 19:13:43 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980T.dat
+    jobid: 53
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30980T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30980T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 53 with external jobid 'Your job 9892610 ("snakejob.plotFingerprint.53.sh") has been submitted'.
+[Mon Nov  4 19:19:56 2024]
+Finished job 80.
+1 of 99 steps (1%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:19:56 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30011NH3K27ac.bw
+    jobid: 68
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30011NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30011NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 68 with external jobid 'Your job 9892631 ("snakejob.bamCoverage.68.sh") has been submitted'.
+[Mon Nov  4 19:19:57 2024]
+Finished job 53.
+2 of 99 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:19:57 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729T_H3K27ac.bw
+    jobid: 97
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30729T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 97 with external jobid 'Your job 9892632 ("snakejob.bamCoverage.97.sh") has been submitted'.
+[Mon Nov  4 19:21:46 2024]
+Finished job 4.
+3 of 99 steps (3%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:21:47 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/SCC_147_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/SCC_147_H3K27ac/qualimapReport.html
+    jobid: 34
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/SCC_147_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=SCC_147_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 34 with external jobid 'Your job 9892633 ("snakejob.qualimap_each_bam.34.sh") has been submitted'.
+[Mon Nov  4 19:24:09 2024]
+Finished job 78.
+4 of 99 steps (4%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:24:09 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30721N_H3K27ac.bw
+    jobid: 90
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30721N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30721N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 90 with external jobid 'Your job 9892635 ("snakejob.bamCoverage.90.sh") has been submitted'.
+[Mon Nov  4 19:24:53 2024]
+Finished job 62.
+5 of 99 steps (5%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:24:53 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861TH3K27ac/qualimapReport.html
+    jobid: 28
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30861TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 28 with external jobid 'Your job 9892636 ("snakejob.qualimap_each_bam.28.sh") has been submitted'.
+[Mon Nov  4 19:26:43 2024]
+Finished job 48.
+6 of 99 steps (6%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:26:43 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694T.dat
+    jobid: 41
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30694T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 41 with external jobid 'Your job 9892641 ("snakejob.plotFingerprint.41.sh") has been submitted'.
+[Mon Nov  4 19:26:43 2024]
+Finished job 49.
+7 of 99 steps (7%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:26:43 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/HOK16B_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/HOK16B_H3K27ac.bw
+    jobid: 84
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/HOK16B_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=HOK16B_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 84 with external jobid 'Your job 9892642 ("snakejob.bamCoverage.84.sh") has been submitted'.
+[Mon Nov  4 19:28:11 2024]
+Finished job 90.
+8 of 99 steps (8%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:28:11 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729TH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729TH3K27ac_R2/qualimapReport.html
+    jobid: 14
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729TH3K27ac_R2/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30729TH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 14 with external jobid 'Your job 9892644 ("snakejob.qualimap_each_bam.14.sh") has been submitted'.
+[Mon Nov  4 19:28:11 2024]
+Finished job 81.
+9 of 99 steps (9%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:28:11 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30710N_H3K27ac.bw
+    jobid: 70
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30710N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30710N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 70 with external jobid 'Your job 9892645 ("snakejob.bamCoverage.70.sh") has been submitted'.
+[Mon Nov  4 19:28:12 2024]
+Finished job 34.
+10 of 99 steps (10%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:28:12 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710T.dat
+    jobid: 55
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30710T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 55 with external jobid 'Your job 9892646 ("snakejob.plotFingerprint.55.sh") has been submitted'.
+[Mon Nov  4 19:31:07 2024]
+Finished job 21.
+11 of 99 steps (11%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:31:07 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710N_H3K27ac/qualimapReport.html
+    jobid: 6
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30710N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 6 with external jobid 'Your job 9892649 ("snakejob.qualimap_each_bam.6.sh") has been submitted'.
+[Mon Nov  4 19:31:52 2024]
+Finished job 55.
+12 of 99 steps (12%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:31:52 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709T.dat
+    jobid: 43
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30709T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 43 with external jobid 'Your job 9892650 ("snakejob.plotFingerprint.43.sh") has been submitted'.
+[Mon Nov  4 19:32:13 2024]
+Finished job 22.
+13 of 99 steps (13%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:32:13 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011N.dat
+    jobid: 36
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30011N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 36 with external jobid 'Your job 9892653 ("snakejob.plotFingerprint.36.sh") has been submitted'.
+[Mon Nov  4 19:32:24 2024]
+Finished job 41.
+14 of 99 steps (14%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:32:24 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721T.dat
+    jobid: 57
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30721T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 57 with external jobid 'Your job 9892654 ("snakejob.plotFingerprint.57.sh") has been submitted'.
+[Mon Nov  4 19:35:21 2024]
+Finished job 14.
+15 of 99 steps (15%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:35:21 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30861TH3K27ac.bw
+    jobid: 92
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30861TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30861TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 92 with external jobid 'Your job 9892656 ("snakejob.bamCoverage.92.sh") has been submitted'.
+[Mon Nov  4 19:36:05 2024]
+Finished job 70.
+16 of 99 steps (16%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:36:05 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861NH3K27ac/qualimapReport.html
+    jobid: 1
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30861NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 1 with external jobid 'Your job 9892657 ("snakejob.qualimap_each_bam.1.sh") has been submitted'.
+[Mon Nov  4 19:36:49 2024]
+Finished job 36.
+17 of 99 steps (17%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:36:49 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709N_H3K27ac/qualimapReport.html
+    jobid: 30
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30709N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 30 with external jobid 'Your job 9892658 ("snakejob.qualimap_each_bam.30.sh") has been submitted'.
+[Mon Nov  4 19:36:50 2024]
+Finished job 43.
+18 of 99 steps (18%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:36:50 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac.bam, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UPCI_SCC_090.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UPCI_SCC_090.dat
+    jobid: 64
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UPCI_SCC_090.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=UPCI_SCC_090
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 64 with external jobid 'Your job 9892659 ("snakejob.plotFingerprint.64.sh") has been submitted'.
+[Mon Nov  4 19:37:33 2024]
+Finished job 26.
+19 of 99 steps (19%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:37:33 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30866N_H3K27ac.bw
+    jobid: 86
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30866N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30866N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 86 with external jobid 'Your job 9892660 ("snakejob.bamCoverage.86.sh") has been submitted'.
+[Mon Nov  4 19:37:44 2024]
+Finished job 57.
+20 of 99 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:37:44 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709T_H3K27ac/qualimapReport.html
+    jobid: 12
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30709T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 12 with external jobid 'Your job 9892661 ("snakejob.qualimap_each_bam.12.sh") has been submitted'.
+[Mon Nov  4 19:38:28 2024]
+Finished job 28.
+21 of 99 steps (21%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:38:28 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011TH3K27ac/qualimapReport.html
+    jobid: 16
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30011TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 16 with external jobid 'Your job 9892662 ("snakejob.qualimap_each_bam.16.sh") has been submitted'.
+[Mon Nov  4 19:40:18 2024]
+Finished job 84.
+22 of 99 steps (22%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:40:18 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955TH3K27ac_R2.bw
+    jobid: 71
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955TH3K27ac_R2.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30955TH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 71 with external jobid 'Your job 9892665 ("snakejob.bamCoverage.71.sh") has been submitted'.
+[Mon Nov  4 19:42:08 2024]
+Finished job 11.
+23 of 99 steps (23%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:42:08 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UM_SCC_047_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UM_SCC_047_H3K27ac.bw
+    jobid: 72
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UM_SCC_047_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=UM_SCC_047_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 72 with external jobid 'Your job 9892667 ("snakejob.bamCoverage.72.sh") has been submitted'.
+[Mon Nov  4 19:42:09 2024]
+Finished job 77.
+24 of 99 steps (24%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:42:09 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac_R2/qualimapReport.html
+    jobid: 15
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac_R2/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30980NH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 15 with external jobid 'Your job 9892668 ("snakejob.qualimap_each_bam.15.sh") has been submitted'.
+[Mon Nov  4 19:42:52 2024]
+Finished job 92.
+25 of 99 steps (25%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:42:52 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac_R2/qualimapReport.html
+    jobid: 7
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac_R2/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30955TH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 7 with external jobid 'Your job 9892670 ("snakejob.qualimap_each_bam.7.sh") has been submitted'.
+[Mon Nov  4 19:43:03 2024]
+Finished job 86.
+26 of 99 steps (26%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:43:03 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30012TH3K27ac.bw
+    jobid: 85
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30012TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30012TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 85 with external jobid 'Your job 9892671 ("snakejob.bamCoverage.85.sh") has been submitted'.
+[Mon Nov  4 19:44:55 2024]
+Finished job 64.
+27 of 99 steps (27%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:44:55 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30861NH3K27ac.bw
+    jobid: 65
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30861NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30861NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 65 with external jobid 'Your job 9892672 ("snakejob.bamCoverage.65.sh") has been submitted'.
+[Mon Nov  4 19:46:44 2024]
+Finished job 16.
+28 of 99 steps (28%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:46:44 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694N_H3K27ac/qualimapReport.html
+    jobid: 29
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30694N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 29 with external jobid 'Your job 9892673 ("snakejob.qualimap_each_bam.29.sh") has been submitted'.
+[Mon Nov  4 19:46:44 2024]
+Finished job 30.
+29 of 99 steps (29%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:46:44 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710T_H3K27ac/qualimapReport.html
+    jobid: 2
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30710T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 2 with external jobid 'Your job 9892674 ("snakejob.qualimap_each_bam.2.sh") has been submitted'.
+[Mon Nov  4 19:48:34 2024]
+Finished job 6.
+30 of 99 steps (30%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:48:34 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694T_H3K27ac/qualimapReport.html
+    jobid: 32
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30694T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 32 with external jobid 'Your job 9892675 ("snakejob.qualimap_each_bam.32.sh") has been submitted'.
+[Mon Nov  4 19:50:24 2024]
+Finished job 85.
+31 of 99 steps (31%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:50:24 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955NH3K27ac.bw
+    jobid: 88
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30955NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 88 with external jobid 'Your job 9892676 ("snakejob.bamCoverage.88.sh") has been submitted'.
+[Mon Nov  4 19:50:25 2024]
+Finished job 23.
+32 of 99 steps (32%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:50:25 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861N.dat
+    jobid: 44
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30861N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 44 with external jobid 'Your job 9892677 ("snakejob.plotFingerprint.44.sh") has been submitted'.
+[Mon Nov  4 19:51:08 2024]
+Finished job 72.
+33 of 99 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:51:08 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30694N_H3K27ac.bw
+    jobid: 93
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30694N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30694N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 93 with external jobid 'Your job 9892680 ("snakejob.bamCoverage.93.sh") has been submitted'.
+[Mon Nov  4 19:51:08 2024]
+Finished job 12.
+34 of 99 steps (34%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:51:08 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729N.dat
+    jobid: 58
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30729N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 58 with external jobid 'Your job 9892681 ("snakejob.plotFingerprint.58.sh") has been submitted'.
+[Mon Nov  4 19:51:53 2024]
+Finished job 44.
+35 of 99 steps (35%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:51:53 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011T.dat
+    jobid: 37
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30011T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30011T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 37 with external jobid 'Your job 9892682 ("snakejob.plotFingerprint.37.sh") has been submitted'.
+[Mon Nov  4 19:52:36 2024]
+Finished job 71.
+36 of 99 steps (36%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:52:36 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/OKF6_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/OKF6_H3K27ac.bw
+    jobid: 91
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/OKF6_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=OKF6_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 91 with external jobid 'Your job 9892683 ("snakejob.bamCoverage.91.sh") has been submitted'.
+[Mon Nov  4 19:52:36 2024]
+Finished job 1.
+37 of 99 steps (37%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:52:37 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980TH3K27ac/qualimapReport.html
+    jobid: 31
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30980TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 31 with external jobid 'Your job 9892684 ("snakejob.qualimap_each_bam.31.sh") has been submitted'.
+[Mon Nov  4 19:53:20 2024]
+Finished job 58.
+38 of 99 steps (38%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:53:20 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862TH3K27ac/qualimapReport.html
+    jobid: 9
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30862TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 9 with external jobid 'Your job 9892686 ("snakejob.qualimap_each_bam.9.sh") has been submitted'.
+[Mon Nov  4 19:54:06 2024]
+Finished job 65.
+39 of 99 steps (39%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:54:06 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30721T_H3K27ac.bw
+    jobid: 87
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30721T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30721T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 87 with external jobid 'Your job 9892687 ("snakejob.bamCoverage.87.sh") has been submitted'.
+[Mon Nov  4 19:54:50 2024]
+Finished job 37.
+40 of 99 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:54:50 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709N.dat
+    jobid: 42
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30709N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30709N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 42 with external jobid 'Your job 9892688 ("snakejob.plotFingerprint.42.sh") has been submitted'.
+[Mon Nov  4 19:57:45 2024]
+Finished job 93.
+41 of 99 steps (41%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:57:45 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac/qualimapReport.html
+    jobid: 17
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=UPCI_SCC_090_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 17 with external jobid 'Your job 9892691 ("snakejob.qualimap_each_bam.17.sh") has been submitted'.
+[Mon Nov  4 19:57:45 2024]
+Finished job 29.
+42 of 99 steps (42%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:57:45 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/SCC_147_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/SCC_147_H3K27ac.bw
+    jobid: 98
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/SCC_147_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=SCC_147_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 98 with external jobid 'Your job 9892692 ("snakejob.bamCoverage.98.sh") has been submitted'.
+[Mon Nov  4 19:57:46 2024]
+Finished job 79.
+43 of 99 steps (43%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:57:46 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30862TH3K27ac.bw
+    jobid: 73
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30862TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30862TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 73 with external jobid 'Your job 9892693 ("snakejob.bamCoverage.73.sh") has been submitted'.
+[Mon Nov  4 19:57:46 2024]
+Finished job 25.
+44 of 99 steps (44%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:57:46 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721N.dat
+    jobid: 56
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30721N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30721N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 56 with external jobid 'Your job 9892694 ("snakejob.plotFingerprint.56.sh") has been submitted'.
+[Mon Nov  4 19:58:30 2024]
+Finished job 42.
+45 of 99 steps (45%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 19:58:30 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UM_SCC_047_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UM_SCC_047_H3K27ac/qualimapReport.html
+    jobid: 8
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UM_SCC_047_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=UM_SCC_047_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 8 with external jobid 'Your job 9892695 ("snakejob.qualimap_each_bam.8.sh") has been submitted'.
+[Mon Nov  4 20:00:20 2024]
+Finished job 52.
+46 of 99 steps (46%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:00:20 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012T.dat
+    jobid: 39
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30012T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 39 with external jobid 'Your job 9892697 ("snakejob.plotFingerprint.39.sh") has been submitted'.
+[Mon Nov  4 20:02:09 2024]
+Finished job 98.
+47 of 99 steps (47%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:02:09 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980TH3K27ac.bw
+    jobid: 95
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30980TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30980TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 95 with external jobid 'Your job 9892698 ("snakejob.bamCoverage.95.sh") has been submitted'.
+[Mon Nov  4 20:02:10 2024]
+Finished job 24.
+48 of 99 steps (48%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:02:10 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955TH3K27ac.bw
+    jobid: 82
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955TH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30955TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 82 with external jobid 'Your job 9892699 ("snakejob.bamCoverage.82.sh") has been submitted'.
+[Mon Nov  4 20:02:10 2024]
+Finished job 87.
+49 of 99 steps (49%) done
+[Mon Nov  4 20:02:10 2024]
+Finished job 73.
+50 of 99 steps (51%) done
+[Mon Nov  4 20:02:10 2024]
+Finished job 56.
+51 of 99 steps (52%) done
+[Mon Nov  4 20:02:10 2024]
+Finished job 39.
+52 of 99 steps (53%) done
+Select jobs to execute...
+Execute 4 jobs...
+
+[Mon Nov  4 20:02:10 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862T.dat
+    jobid: 47
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30862T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 47 with external jobid 'Your job 9892700 ("snakejob.plotFingerprint.47.sh") has been submitted'.
+
+[Mon Nov  4 20:02:11 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694N.dat
+    jobid: 40
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30694N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30694N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 40 with external jobid 'Your job 9892701 ("snakejob.plotFingerprint.40.sh") has been submitted'.
+
+[Mon Nov  4 20:02:11 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30694T_H3K27ac.bw
+    jobid: 96
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30694T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30694T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 96 with external jobid 'Your job 9892702 ("snakejob.bamCoverage.96.sh") has been submitted'.
+
+[Mon Nov  4 20:02:11 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729N_H3K27ac/qualimapReport.html
+    jobid: 3
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729N_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30729N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 3 with external jobid 'Your job 9892703 ("snakejob.qualimap_each_bam.3.sh") has been submitted'.
+Select jobs to execute...
+Waiting for more resources.
+Waiting for more resources.
+Waiting for more resources.
+[Mon Nov  4 20:03:59 2024]
+Finished job 9.
+53 of 99 steps (54%) done
+Execute 1 jobs...
+
+[Mon Nov  4 20:03:59 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac_R2/qualimapReport.html
+    jobid: 19
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac_R2/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30955NH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 19 with external jobid 'Your job 9892705 ("snakejob.qualimap_each_bam.19.sh") has been submitted'.
+[Mon Nov  4 20:04:00 2024]
+Finished job 91.
+54 of 99 steps (55%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:04:00 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30862NH3K27ac.bw
+    jobid: 75
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30862NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30862NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 75 with external jobid 'Your job 9892706 ("snakejob.bamCoverage.75.sh") has been submitted'.
+[Mon Nov  4 20:04:00 2024]
+Finished job 51.
+55 of 99 steps (56%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:04:00 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012NH3K27ac/qualimapReport.html
+    jobid: 10
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30012NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 10 with external jobid 'Your job 9892707 ("snakejob.qualimap_each_bam.10.sh") has been submitted'.
+[Mon Nov  4 20:05:50 2024]
+Finished job 32.
+56 of 99 steps (57%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:05:50 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866T_H3K27ac/qualimapReport.html
+    jobid: 5
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30866T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 5 with external jobid 'Your job 9892708 ("snakejob.qualimap_each_bam.5.sh") has been submitted'.
+[Mon Nov  4 20:07:41 2024]
+Finished job 40.
+57 of 99 steps (58%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:07:41 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/OKF6_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/OKF.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/OKF.dat
+    jobid: 61
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/OKF.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=OKF
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 61 with external jobid 'Your job 9892710 ("snakejob.plotFingerprint.61.sh") has been submitted'.
+[Mon Nov  4 20:08:02 2024]
+Finished job 2.
+58 of 99 steps (59%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:08:02 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710N.dat
+    jobid: 54
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30710N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30710N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 54 with external jobid 'Your job 9892711 ("snakejob.plotFingerprint.54.sh") has been submitted'.
+[Mon Nov  4 20:08:03 2024]
+Finished job 47.
+59 of 99 steps (60%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:08:03 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UPCI_SCC_090_H3K27ac_R2.bw
+    jobid: 89
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/UPCI_SCC_090_H3K27ac_R2.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=UPCI_SCC_090_H3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 89 with external jobid 'Your job 9892712 ("snakejob.bamCoverage.89.sh") has been submitted'.
+[Mon Nov  4 20:09:53 2024]
+Finished job 61.
+60 of 99 steps (61%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:09:53 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/HOK16B_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/HOK16.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/HOK16.dat
+    jobid: 60
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/HOK16.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=HOK16
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 60 with external jobid 'Your job 9892715 ("snakejob.plotFingerprint.60.sh") has been submitted'.
+[Mon Nov  4 20:10:36 2024]
+Finished job 95.
+61 of 99 steps (62%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:10:36 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/OKF6_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/OKF6_H3K27ac/qualimapReport.html
+    jobid: 27
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/OKF6_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=OKF6_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 27 with external jobid 'Your job 9892716 ("snakejob.qualimap_each_bam.27.sh") has been submitted'.
+[Mon Nov  4 20:11:21 2024]
+Finished job 96.
+62 of 99 steps (63%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:11:21 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac_R2.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955NH3K27ac_R2.bw
+    jobid: 83
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30955NH3K27ac_R2.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30955NH3K27ac_R2
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 83 with external jobid 'Your job 9892717 ("snakejob.bamCoverage.83.sh") has been submitted'.
+[Mon Nov  4 20:13:10 2024]
+Finished job 54.
+63 of 99 steps (64%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:13:10 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30012NH3K27ac.bw
+    jobid: 74
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30012NH3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30012NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 74 with external jobid 'Your job 9892719 ("snakejob.bamCoverage.74.sh") has been submitted'.
+[Mon Nov  4 20:13:10 2024]
+Finished job 75.
+64 of 99 steps (65%) done
+[Mon Nov  4 20:13:10 2024]
+Finished job 88.
+65 of 99 steps (66%) done
+[Mon Nov  4 20:13:10 2024]
+Finished job 7.
+66 of 99 steps (67%) done
+Select jobs to execute...
+Execute 3 jobs...
+
+[Mon Nov  4 20:13:10 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862N.dat
+    jobid: 46
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30862N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30862N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 46 with external jobid 'Your job 9892720 ("snakejob.plotFingerprint.46.sh") has been submitted'.
+
+[Mon Nov  4 20:13:11 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30710T_H3K27ac.bw
+    jobid: 66
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30710T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30710T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 66 with external jobid 'Your job 9892721 ("snakejob.bamCoverage.66.sh") has been submitted'.
+
+[Mon Nov  4 20:13:11 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac/qualimapReport.html
+    jobid: 18
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30955TH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 18 with external jobid 'Your job 9892722 ("snakejob.qualimap_each_bam.18.sh") has been submitted'.
+Select jobs to execute...
+Waiting for more resources.
+Waiting for more resources.
+[Mon Nov  4 20:13:22 2024]
+Finished job 50.
+67 of 99 steps (68%) done
+Execute 1 jobs...
+
+[Mon Nov  4 20:13:22 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/HOK16B_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/HOK16B_H3K27ac/qualimapReport.html
+    jobid: 20
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/HOK16B_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=HOK16B_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 20 with external jobid 'Your job 9892723 ("snakejob.qualimap_each_bam.20.sh") has been submitted'.
+[Mon Nov  4 20:14:06 2024]
+Finished job 3.
+68 of 99 steps (69%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:14:06 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac/qualimapReport.html
+    jobid: 13
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30980NH3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 13 with external jobid 'Your job 9892724 ("snakejob.qualimap_each_bam.13.sh") has been submitted'.
+[Mon Nov  4 20:15:56 2024]
+Finished job 46.
+69 of 99 steps (70%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:15:56 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30866T_H3K27ac.bw
+    jobid: 69
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30866T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30866T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 69 with external jobid 'Your job 9892726 ("snakejob.bamCoverage.69.sh") has been submitted'.
+[Mon Nov  4 20:15:57 2024]
+Finished job 10.
+70 of 99 steps (71%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:15:57 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30709T_H3K27ac.bw
+    jobid: 76
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30709T_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30709T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 76 with external jobid 'Your job 9892727 ("snakejob.bamCoverage.76.sh") has been submitted'.
+[Mon Nov  4 20:18:52 2024]
+Finished job 66.
+71 of 99 steps (72%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:18:52 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729N_H3K27ac.bw
+    jobid: 67
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30729N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30729N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 67 with external jobid 'Your job 9892729 ("snakejob.bamCoverage.67.sh") has been submitted'.
+[Mon Nov  4 20:19:37 2024]
+Finished job 89.
+72 of 99 steps (73%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:19:37 2024]
+rule qualimap_each_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729T_H3K27ac/qualimapReport.html
+    jobid: 33
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729T_H3K27ac/qualimapReport.html
+    wildcards: outdir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac, sample=30729T_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 33 with external jobid 'Your job 9892730 ("snakejob.qualimap_each_bam.33.sh") has been submitted'.
+[Mon Nov  4 20:21:26 2024]
+Finished job 74.
+73 of 99 steps (74%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:21:26 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UM_SCC_047_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UM_SCC_047.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UM_SCC_047.dat
+    jobid: 63
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/UM_SCC_047.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=UM_SCC_047
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 63 with external jobid 'Your job 9892732 ("snakejob.plotFingerprint.63.sh") has been submitted'.
+[Mon Nov  4 20:21:26 2024]
+Finished job 15.
+74 of 99 steps (75%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:21:26 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861TH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861T.dat
+    jobid: 45
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30861T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30861T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 45 with external jobid 'Your job 9892733 ("snakejob.plotFingerprint.45.sh") has been submitted'.
+[Mon Nov  4 20:21:27 2024]
+Finished job 83.
+75 of 99 steps (76%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:21:27 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729TH3K27ac_R2.bam, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729T_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729T.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729T.dat
+    jobid: 59
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30729T.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30729T
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 59 with external jobid 'Your job 9892734 ("snakejob.plotFingerprint.59.sh") has been submitted'.
+[Mon Nov  4 20:22:11 2024]
+Finished job 60.
+76 of 99 steps (77%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:22:11 2024]
+rule plotFingerprint:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012NH3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012N.png, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012N.dat
+    jobid: 38
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint/30012N.png
+    wildcards: fingerprint_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/fingerprint, fp_sample=30012N
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 38 with external jobid 'Your job 9892739 ("snakejob.plotFingerprint.38.sh") has been submitted'.
+[Mon Nov  4 20:22:54 2024]
+Finished job 31.
+77 of 99 steps (78%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 20:22:54 2024]
+rule bamCoverage:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709N_H3K27ac.bam
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30709N_H3K27ac.bw
+    jobid: 94
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage/30709N_H3K27ac.bw
+    wildcards: bam_coverga_report_dir=/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage, bc_sample=30709N_H3K27ac
+    threads: 4
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=15
+
+Submitted job 94 with external jobid 'Your job 9892742 ("snakejob.bamCoverage.94.sh") has been submitted'.
+[Mon Nov  4 20:23:05 2024]
+Finished job 67.
+78 of 99 steps (79%) done
+[Mon Nov  4 20:23:17 2024]
+Finished job 76.
+79 of 99 steps (80%) done
+[Mon Nov  4 20:25:06 2024]
+Finished job 69.
+80 of 99 steps (81%) done
+[Mon Nov  4 20:25:07 2024]
+Finished job 82.
+81 of 99 steps (82%) done
+[Mon Nov  4 20:26:57 2024]
+Finished job 94.
+82 of 99 steps (83%) done
+[Mon Nov  4 20:26:58 2024]
+Finished job 59.
+83 of 99 steps (84%) done
+[Mon Nov  4 20:28:47 2024]
+Finished job 63.
+84 of 99 steps (85%) done
+[Mon Nov  4 20:28:47 2024]
+Finished job 45.
+85 of 99 steps (86%) done
+[Mon Nov  4 20:28:47 2024]
+Finished job 19.
+86 of 99 steps (87%) done
+[Mon Nov  4 20:30:37 2024]
+Finished job 5.
+87 of 99 steps (88%) done
+[Mon Nov  4 20:32:18 2024]
+Finished job 38.
+88 of 99 steps (89%) done
+[Mon Nov  4 20:35:48 2024]
+Finished job 17.
+89 of 99 steps (90%) done
+[Mon Nov  4 20:46:29 2024]
+Finished job 13.
+90 of 99 steps (91%) done
+[Mon Nov  4 20:46:29 2024]
+Finished job 33.
+91 of 99 steps (92%) done
+[Mon Nov  4 20:53:59 2024]
+Finished job 8.
+92 of 99 steps (93%) done
+[Mon Nov  4 21:00:40 2024]
+Finished job 20.
+93 of 99 steps (94%) done
+[Mon Nov  4 21:03:10 2024]
+Finished job 27.
+94 of 99 steps (95%) done
+[Mon Nov  4 21:13:51 2024]
+Finished job 18.
+95 of 99 steps (96%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov  4 21:13:51 2024]
+rule qualimap_multi_bam:
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UM_SCC_047_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/HOK16B_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/OKF6_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/SCC_147_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/qualimap_files_list.txt
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/multibamreport/multisampleBamQcReport.html
+    jobid: 35
+    reason: Missing output files: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/multibamreport/multisampleBamQcReport.html; Input files updated by another job: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UM_SCC_047_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/OKF6_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/SCC_147_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/HOK16B_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862NH3K27ac/qualimapReport.html
+    resources: tmpdir=<TBD>, mem_mb=25600, mem_mib=24415, runtime=60, threads=1
+
+Submitted job 35 with external jobid 'Your job 9892850 ("snakejob.qualimap_multi_bam.35.sh") has been submitted'.
+[Mon Nov  4 21:15:31 2024]
+Error in rule qualimap_multi_bam:
+    message: For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 35
+    input: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30710N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UM_SCC_047_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30862NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729TH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30011TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/HOK16B_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30012TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30866N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30955NH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/UPCI_SCC_090_H3K27ac_R2/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30721N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/OKF6_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30861TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30709N_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30980TH3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30694T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/30729T_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/SCC_147_H3K27ac/qualimapReport.html, /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/qualimap_files_list.txt
+    output: /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/multibamreport/multisampleBamQcReport.html
+    conda-env: /autofs/projects-t3/gaykalova/aloginov/roy_project/goodnuff/pipelines/mapping_qc/.snakemake/conda/ab9d13c3c955b1e6b0fbf80859ca3086_
+    shell:
+        cd <TBD>; qualimap multi-bamqc -d /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/qualimap_files_list.txt -outdir /local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/multibamreport --java-mem-size=25G 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    external_jobid: Your job 9892850 ("snakejob.qualimap_multi_bam.35.sh") has been submitted
+
+[Mon Nov  4 23:11:29 2024]
+Finished job 68.
+96 of 99 steps (97%) done
+[Mon Nov  4 23:13:09 2024]
+Finished job 97.
+97 of 99 steps (98%) done
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-11-04T185856.311408.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
+Pipeline:mapping_qc version: 0.5
+Input directory:/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac
+Files for mapping_qc processing(/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/*.bam):
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac_R2.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UM_SCC_047_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729TH3K27ac_R2.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac_R2.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac_R2.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/HOK16B_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac_R2.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/OKF6_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709N_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980TH3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729T_H3K27ac.bam
+	/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/SCC_147_H3K27ac.bam
+['/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30710N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac_R2.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UM_SCC_047_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30862NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729TH3K27ac_R2.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980NH3K27ac_R2.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30011TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac_R2.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/HOK16B_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30012TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30866N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30955NH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/UPCI_SCC_090_H3K27ac_R2.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30721N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/OKF6_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30861TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30709N_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30980TH3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30694T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/30729T_H3K27ac.bam', '/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_h3k27ac/SCC_147_H3K27ac.bam']
+/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapping_h3k27ac/bam_coverage

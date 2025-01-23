@@ -1,0 +1,11 @@
+input_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/trimmed_h3k27ac"
+verbose: 3
+file_mask: "*_paired_R[12].fastq.gz"
+use_subdirs: False
+output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/fastqc_h3k27ac_trimmed"
+skip_renaming: True
+create_multiqc: True
+multiqc_report_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/multiqc_fastqc_h3k27ac_trimmed"
+multiqc_file_name: "multiqc_fastqc_h3k27ac_trimmed_report"
+
+

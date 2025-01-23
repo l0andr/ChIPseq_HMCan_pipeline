@@ -1,0 +1,10 @@
+name: hmcan_lily
+channels:
+  - bioconda
+  - conda-forge
+  - r
+dependencies:
+  - r-base
+  - r-essentials
+  - ucsc-wigtobigwig
+  - bioconductor-rtracklayer

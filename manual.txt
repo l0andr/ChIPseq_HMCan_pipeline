@@ -1,0 +1,227 @@
+ChipSeq snakemake pipelines on IGS cluster
+===================================================
+
+Contents:
+    1. How to download and install your own version of pipelines
+    2. Best practices for setting up and storing your own parameters
+    3. How to run a Snakemake pipeline
+    4. How to control and check execution
+    5. How to understand when execution is going wrong
+
+1, How to download and install your own version of pipelines
+---------------------------------------------------------
+
+1.0 Prerequisites
+
+    - Install Miniconda3 (https://docs.conda.io/en/latest/miniconda.html)
+    - Install Git (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+    - Install Mamba [optional] (https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html
+
+    - Obtain access to github repository of the project
+
+      
+
+1.1 Download the set of pipelines from Github
+    Run the following command in the terminal:
+    git clone [URL address of repository]
+    
+
+1.2 Install the pipelines
+    Run the following commands in the terminal:
+    cd [name of repository]
+    conda env create -f goodnuf.yml - create enviromant may take a time
+    conda activate goodnuff - this command activate conda environment goodnuff with all necessary tools
+    ./install.sh - some additional steps for installation
+
+1.3 Structure of repository:
+    pipelines/ - directory with snakemake pipelines
+    tools/ - directory with separate tools
+
+1.4 Structure of each pipeline:
+    Snakefile - main file with pipeline, which contains rules and their order of execution,it written mostly on python
+    config.yaml - file with parameters of pipeline [What you will need to edit in your one version of pipeline]
+    environment.yaml - file with description of pipeline specified conda environment
+    README.md - file with description of pipeline
+    version.py - file with version of pipeline
+    ... other files and directories with scripts and tools
+
+1.5 Structure of config.yaml file:
+    YAML file it is a file with parameters of pipeline. It is a text file with structure:
+    parameter1: value1
+    parameter2: value2
+    ...
+    parameterN: valueN
+
+    Each parameter is a variable with name and value.
+
+    Some strings may be commented out with # symbol, it means that this string will be ignored by pipeline.
+    # parameter2: value2
+
+    Usually config.yaml file contains parameters with paths to input and output files, parameters of tools,
+    parameters of pipeline. Also Usually this parameters should be desribed in Readme.md file in the same directory,
+    so if you not completely sure what this parameter means, you can check it in Readme.md file, then ask autor of
+    pipeline or just try to run pipeline with default parameters.
+
+2. Best practices for setting up and storing your own parameters
+-------------------------------------------------------------
+
+2.1 General guide for versioning and git usage
+
+When you download a repository you will be on the 'master' branch. This is the main branch of the repository.
+You can check which branch you are on by running the following command in the terminal:
+git branch
+
+Good to have separate branch for each project, so you can easily switch between them and don't mess up with
+parameters of different projects.
+
+To create a new branch, run the following command in the terminal:
+git checkout -b [name of new branch]
+
+To switch between branches, run the following command in the terminal:
+git checkout [name of branch]
+
+To check which branch you are on, run the following command in the terminal:
+git branch
+
+To check which files were changed, run the following command in the terminal:
+git status
+
+To add files to commit, run the following command in the terminal:
+git add [name of file]
+
+To commit changes, run the following command in the terminal:
+git commit -m "[message]"
+Note: [message] should be a short description of changes you made
+
+To push changes to the repository, run the following command in the terminal:
+git push origin [name of branch]
+
+Time to time you will need to update your branch with changes from master branch. To do this, run the following
+commands in the terminal:
+
+git checkout master
+git pull
+git checkout [name of branch]
+git merge master
+    You will need it in case if some critical fix was made in master branch and you want to have it in your branch.
+someties you will need to resolve conflicts, it takes some time and experience, so if you are not sure what to do,
+just ask autor of pipeline.
+
+To check last changes in the branch, run the following command in the terminal:
+git log
+
+To check last changes in the file, run the following command in the terminal:
+git log [name of file]
+
+To check last uncommited changes in the file, run the following command in the terminal:
+git diff [name of file]
+or git diff for whole project
+
+2.2 How to setting up your parameters.
+
+Each pipeline has config.yaml file with parameters of pipeline. It is a text file with structure:
+parameter1: value1, so you can use any text editor to edit it, for editing from commandline you can use nano.
+To edit config.yaml file, run the following command in the terminal:
+nano config.yaml
+
+Usually you will need to change paths to input and output directories and files
+Let's look on the example of fastqc pipeline:
+    input_dir: "/local/projects-t3/XDGUM/[3H][0O]*"
+    first_reads_file_mask: "*R[1]_ext-trimmed.fastq.gz"
+    second_reads_file_mask: "*R[3]_ext-trimmed.fastq.gz"
+
+Here we should change input_dir to path to our files, and set filemasks for left and right reads.
+In this strings we can use * and [] to specify filemasks
+* - means any symbols
+[] - means any symbol from this list
+So *R[1]_ext-trimmed.fastq.gz means any symbols, then R1, then any symbols, then _ext-trimmed.fastq.gz
+
+after all necessery edits you can save file and exit from nano editor by pressing Ctrl+X, then Y, then Enter
+then will be good to check that you didn't make any mistakes in config.yaml file, to do this run the following
+command in the terminal:
+
+snakemake -np
+
+Be sure that you are in the directory with Snakefile of pipeline and goodnuff conda environment is activated.
+If you see some errors, you can try to fix them by yourself, or ask autor of pipeline.
+
+if everethig ok you can commite your changes to git, to save them and push to repository, run the following
+commands in the terminal:
+git add config.yaml
+git commit -m "changed paths to input files" [or any other message described your changes]
+git push origin [name of branch]
+
+3. How to run a Snakemake pipeline
+----------------------------------
+
+3.1 Run pipeline on IGS cluster
+
+Activate the conda environment:
+conda activate goodnuff
+
+Activate modules that needed to work with IGS cluster:
+module load slurm
+
+Change directory to the directory with Snakefile of pipeline:
+cd [path to directory with Snakefile]
+
+Check parameters of pipeline:
+
+snakemake -np
+
+In general you can see 3 kinds of results of this command:
+1. If you see some errors, you can try to fix them by yourself, or ask autor of pipeline.
+2. You can see message that nothing to do, it means that pipeline already finished and you don't need to run it again.
+3. You can see list of rules, which will be executed by pipeline, it means that you can run pipeline.
+
+To run pipeline you need to run the command like following:
+
+ nohup snakemake --use-conda --keep-going --profile slurm --cluster-generic-submit-cmd="sbatch --parsable --cpus-per-task {threads} \
+ --mem {resources.mem_mb} --time {resources.runtime}" -j [number of parallel jobs] &> snakemake.run &
+ 
+Example:
+
+ nohup nakemake --use-conda --keep-going --profile slurm --cluster-generic-submit-cmd="sbatch --parsable --cpus-per-task {threads} \
+ --mem {resources.mem_mb} --time {resources.runtime}" -j [number of parallel jobs] &> snakemake.run &
+ 
+3.2 How to re-run a Snakemake pipeline
+
+Sometime you will need to re-run pipeline, after failed execution or after some changes in config.yaml file.
+to be sure that you will re-run pipeline from the beginning, you can delete all files created by pipeline.
+To do this, run the following command in the terminal:
+rm -rf *.sh.* - to delete logs of separate jobs
+rm -rf snakemake.run - to delete log of snakemake execution
+snakemake -n --unlock - to unlock pipeline
+
+Then you can run pipeline as described in previous section.
+
+4. How to control and check execution
+
+After pipleine was started, you can check execution by looking on snakemake.run file, which will be created in
+directory with Snakefile of pipeline. You can check it by running the following command in the terminal:
+cat snakemake.run
+
+There are many a lot of data, may be you would like to see only progress of exectution, to do this, run the following
+cat snakemake.run | grep done
+
+Also after starting of snakemake jobs your will see them in queue of IGS cluster, to check them, run the following
+command in the terminal:
+qstat
+
+5. How to understand when execution is going wrong
+
+You haven't jobs in qstat queue, but snakemake.run file is not empty, it means that some jobs failed.
+You can check which jobs failed by running the following command in the terminal:
+
+cat snakemake.run | grep failed
+
+or
+
+cat snakemake.run | grep error
+
+You can check logs of failed jobs by running the following command in the terminal:
+
+cat *.sh.* | grep -C 5 error - it means you would like to see 5 lines before and after line with error
+
+
+

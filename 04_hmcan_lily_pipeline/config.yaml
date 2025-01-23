@@ -1,0 +1,20 @@
+input_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/mapped_mixed_relabeled"
+file_mask: "*.bam"
+use_subdirs: False
+output_dir: "/local/projects-t3/gaykalova/aloginov/roy_project/ChIPSeq_all/hmcan_lily_mixed_relabeled"
+tmp_dir: "/local/scratch/aloginov/hmcan"
+
+#following samples labels expected on the start of bam files names
+list_of_samples: ['30710N','30710T','30721N','30721T','30729N','30729T']
+#input lists should correspond to sample list.
+list_of_inputs: ['30710N_Input.bam','30710T_Input.bam','30721N_Input.bam','30721T_Input.bam','30729N_Input.bam','30729T_Input.bam']
+hmcan_parma_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/hmcanconfig.txt"
+hmcan_installation_dir: "/local/projects-t3/gaykalova/ChIP-seq_Roy/src/HMCan"
+lily_installation_dir: "/local/projects-t3/gaykalova/ChIP-seq_Roy/src/LILYfix"
+lily_stitching_distance: 12500
+lily_annotate_promoters__distance: 2500
+lily_transcriptome_information_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/hg38_refseq.ucsc"
+lily_genome_index_file: "/local/projects-t3/gaykalova/ChIP-seq_Roy/configs/GCA_000001405.15_GRCh38_no_alt_analysis_set_hpv16.clean.fna.fai"
+
+
+

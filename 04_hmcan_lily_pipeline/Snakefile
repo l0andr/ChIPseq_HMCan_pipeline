@@ -1,0 +1,147 @@
+import version
+import glob
+from os.path import join
+import os
+from typing import List
+configfile: "config.yaml"
+
+# Select files based on file mask and use_subdirs flag
+if config['use_subdirs']:
+    pattern = join(config["input_dir"],"**", config["file_mask"])
+else:
+    pattern = join(config["input_dir"], config["file_mask"])
+input_files = glob.glob(pattern,recursive=config["use_subdirs"])
+
+print(f"## Input directory:{config['input_dir']}")
+print(f"## Files for {version.__pipeline_name__} processing({pattern}):")
+
+list_of_dir_to_unsure_and_create = [config["output_dir"],config["tmp_dir"]]
+
+for d in list_of_dir_to_unsure_and_create:
+    if not os.path.isdir(d):
+        print(f"## No output dir:{d}. Will try to create.")
+        os.makedirs(d,exist_ok=True)
+
+list_of_dir_to_check = [config['hmcan_installation_dir'],config['lily_installation_dir']]
+
+for d in list_of_dir_to_check:
+    if not os.path.isdir(d):
+        print(f"Error: No mandatory dir:{d}.")
+        raise RuntimeError(f"Error: No mandatory dir:{d}.")
+
+list_of_files_to_ensure = {'hmcan_parma_file': config['hmcan_parma_file'],
+                           'lily_transcriptome_information_file': config['lily_transcriptome_information_file'],
+                           'lily_genome_index_file': config['lily_genome_index_file']}
+
+for p,d in list_of_files_to_ensure.items():
+    if not os.path.exists(d):
+        print(f"Error: No file ({p}):{d}.")
+        raise RuntimeError(f"Error: No file ({p}):{d}.")
+
+def filepath2name(fpath):
+    return os.path.basename(fpath).split('.')[0]
+file_mapping = {filepath2name(fp): fp for fp in input_files}
+
+list_of_samples = config['list_of_samples']
+list_of_inputs = config['list_of_inputs']
+
+def select_input_by_filename(list_of_samples:List[str],list_of_inputs:List[str],filename:str):
+    #select_sample
+    sample = ""
+    sample_num = None
+    i = 0
+    for smp in list_of_samples:
+        if filename.startswith(smp):
+            sample_num = i
+            sample = smp
+            break
+        else:
+            i+=1
+    if len(sample) == 0:
+        return None
+    return list_of_inputs[sample_num]
+
+#remove inputs from list of files
+input_files_filtered = []
+inputs_mapping = {}
+for inpf in input_files:
+    if filepath2name(inpf)+".bam" in list_of_inputs:
+        continue
+    inputbam = select_input_by_filename(list_of_samples, list_of_inputs, filepath2name(inpf))
+    if inputbam is not None and filepath2name(inputbam) in file_mapping.keys():
+        input_files_filtered.append(inpf)
+        inputs_mapping[filepath2name(inpf)] = file_mapping[filepath2name(inputbam)]
+    else:
+        print(f"## Can't find input bam for file {inpf}, will be skipped")
+
+input_files = input_files_filtered
+file_mapping = {filepath2name(fp): fp for fp in input_files}
+
+
+if len(input_files) == 0:
+    print(f"\t## *** Nothing to process! ***")
+else:
+    for fname in input_files:
+        print(f"##\t{file_mapping[filepath2name(fname)]} {inputs_mapping[filepath2name(fname)]}")
+
+rule all:
+    input:
+        expand("{outdir}/{sample}/{sample}.wig", outdir=config["output_dir"], sample=list(map(lambda
+            x:filepath2name(x), input_files))),
+        expand("{outdir}/{sample}/{sample}.scores.bed", outdir=config["output_dir"], sample=list(map( lambda
+            x:filepath2name(x),input_files))),
+
+
+# Define rule for running QualimapQC
+rule HMCan:
+    input:
+        param_file = config['hmcan_parma_file'],
+        bam_chip=lambda wildcards: file_mapping[wildcards.sample],
+        bam_input=lambda wildcards: inputs_mapping[wildcards.sample]
+    output:
+        hmcan_wig = "{outdir}/{sample}/{sample}.wig"
+    params:
+        hmcan_param_file = config['hmcan_parma_file'],
+        hmcan_exec = config['hmcan_installation_dir']+"/src/HMCan",
+        threads = 1,
+        outdir = config['output_dir'],
+    threads: 1
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=30024,
+        runtime=200,
+        threads=1,
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir}; {params.hmcan_exec} {input.bam_chip} {input.bam_input} {params.hmcan_param_file} {wildcards.outdir}/{wildcards.sample}/{wildcards.sample}"
+
+rule Lily:
+    input:
+        lily_transcriptome_information_file = config['lily_transcriptome_information_file'],
+        lily_genome_index_file = config['lily_genome_index_file'],
+        hmcan_wig = "{outdir}/{sample}/{sample}.wig"
+    output:
+        lily_out =  "{outdir}/{sample}/{sample}.scores.bed"
+    params:
+        lily_exec = config['lily_installation_dir'] + "/scripts/runLILY.R",
+        lily_stitching_distance=config['lily_stitching_distance'],
+        lily_annotate_promoters_distance=config['lily_annotate_promoters__distance'],
+
+        threads=1,
+        outdir=config['output_dir'],
+    threads: 1
+    conda:
+        "environment.yaml"
+    resources:
+        mem_mb=10024,
+        runtime=200,
+        threads=1,
+        tmpdir=config['tmp_dir']
+    shell:
+        "cd {resources.tmpdir}; cat {params.lily_exec} | R --slave --args "
+        "{wildcards.outdir}/{wildcards.sample}/{wildcards.sample} "
+        "{wildcards.outdir}/{wildcards.sample}/ "
+        "{params.lily_stitching_distance} {params.lily_annotate_promoters_distance} "
+        "{input.lily_transcriptome_information_file} "
+        "{input.lily_genome_index_file} "
